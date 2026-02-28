@@ -187,8 +187,14 @@ export default function Generator() {
           {loading ? "Generating..." : "Generate Notes"}
         </button>
       </div>
-
-      <NotesViewer notes={notes} />
+          <NotesViewer
+  notes={notes}
+  onCopy={async () => {
+    await navigator.clipboard.writeText(notes);
+    alert("Copied ✅");
+  }}
+  onClear={() => setNotes("")}
+/>
     </div>
   );
 }
